@@ -1,0 +1,3 @@
+module Competition.Internal
+    (
+    ) where
