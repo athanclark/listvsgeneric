@@ -1,31 +1,48 @@
-# listvsgeneric
+listvsgeneric
+=============
 
-TODO: Write description here
+Test list-specific functions against generic ones.
 
-## Installation
+Currently there's only one test - turning something `Foldable` (or a list) into
+an `IntMap`.
 
-TODO: Write installation instructions here
+## Compiling & Running Benchmark
 
-## Usage
+To run the test, make sure you have either stack > 1.3 or GHC >= 7.10 and cabal-install > 1.22.
+Then, clone the repo:
 
-### Creating `x`
-
-TODO: Write usage instructions here
-
-### Combining `x`
-
-TODO: Write usage instructions here
-
-### Consuming `x`
-
-TODO: Write usage instructions here
-
-## How to run tests
-
-```
-cabal configure --enable-tests && cabal build && cabal test
+```bash
+git clone https://github.com/athanclark/listvsgeneric
 ```
 
-## Contributing
+build the library:
 
-TODO: Write contribution instructions here
+#### Cabal-Install
+
+```bash
+cabal install --enable-tests --enable-benchmarks
+```
+
+#### Stack
+
+```bash
+stack build
+```
+
+Then benchmark:
+
+#### Cabal-Install
+
+```bash
+cabal bench
+```
+
+> __Help__: How do I supply arguments to the suite? :(
+
+#### Stack
+
+```bash
+stack bench --benchmark-arguments="--output profile.html"
+```
+
+This renders a nice report to `./profile.html`.

@@ -27,7 +27,10 @@ Test-Suite spec
   Default-Language:     Haskell2010
   Hs-Source-Dirs:       src
                       , test
-  Ghc-Options:          -Wall
+  Other-Modules:        Competition
+                        Competition.List
+                        Competition.Generic
+  Ghc-Options:          -Wall -threaded
   Main-Is:              Main.hs
   Build-Depends:        base
                       , tasty
@@ -39,6 +42,23 @@ Test-Suite spec
                       , transformers-base
                       , mtl
                       , containers
+
+Benchmark profile
+  Type:                 exitcode-stdio-1.0
+  Default-Language:     Haskell2010
+  Hs-Source-Dirs:       src
+                      , bench
+  Other-Modules:        Competition
+                        Competition.List
+                        Competition.Generic
+  Ghc-Options:          -Wall -threaded
+  Main-Is:              Profile.hs
+  Build-Depends:        base
+                      , transformers
+                      , transformers-base
+                      , mtl
+                      , containers
+                      , criterion
 
 Source-Repository head
   Type:                 git

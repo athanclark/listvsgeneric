@@ -1,3 +1,0 @@
-module Competition.Internal
-    (
-    ) where
