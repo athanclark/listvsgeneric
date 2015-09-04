@@ -3,6 +3,8 @@ listvsgeneric
 
 Test list-specific functions against generic ones.
 
+[check out the results](https://htmlpreview.github.io/?https://github.com/athanclark/listvsgeneric/blob/master/profile.html).
+
 Currently there's only one test - turning something `Foldable` (or a list) into
 an `IntMap`.
 
