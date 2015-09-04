@@ -5,9 +5,6 @@ Test list-specific functions against generic ones.
 
 [check out the results](https://htmlpreview.github.io/?https://github.com/athanclark/listvsgeneric/blob/master/profile.html).
 
-Currently there's only one test - turning something `Foldable` (or a list) into
-an `IntMap`.
-
 ## Compiling & Running Benchmark
 
 To run the test, make sure you have either stack > 1.3 or GHC >= 7.10 and cabal-install > 1.22.
