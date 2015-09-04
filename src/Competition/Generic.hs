@@ -27,3 +27,17 @@ foldableToIntMap xs = runST $ do
       i <- liftBase $ readSTRef k
       liftBase $ modifySTRef k (+1)
       return $ IntMap.insert i x acc
+
+foldableToIntMap' :: Foldable f => f a -> IntMap a
+foldableToIntMap' xs = runST $ do
+  k <- newSTRef 0
+  runReaderT (foldlM go mempty xs) k
+  where
+    go :: ( MonadReader (STRef s Int) m
+          , MonadBase (ST s) m
+          ) => IntMap a -> a -> m (IntMap a)
+    go acc x = do
+      k <- ask
+      i <- liftBase $ readSTRef k
+      liftBase $ modifySTRef' k (+1)
+      return $ IntMap.insert i x acc

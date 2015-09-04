@@ -41,12 +41,65 @@ main = defaultMain
         , bench "4" $ whnf foldableToIntMap ([0..40] :: [Int])
         , bench "5" $ whnf foldableToIntMap ([0..50] :: [Int])
         ]
+      , bgroup "[Int] Strict"
+        [ bench "1" $ whnf foldableToIntMap' ([0..10] :: [Int])
+        , bench "2" $ whnf foldableToIntMap' ([0..20] :: [Int])
+        , bench "3" $ whnf foldableToIntMap' ([0..30] :: [Int])
+        , bench "4" $ whnf foldableToIntMap' ([0..40] :: [Int])
+        , bench "5" $ whnf foldableToIntMap' ([0..50] :: [Int])
+        ]
       , bgroup "Set Int"
         [ bench "1" $ whnf foldableToIntMap (Set.fromList ([0..10] :: [Int]))
         , bench "2" $ whnf foldableToIntMap (Set.fromList ([0..20] :: [Int]))
         , bench "3" $ whnf foldableToIntMap (Set.fromList ([0..30] :: [Int]))
         , bench "4" $ whnf foldableToIntMap (Set.fromList ([0..40] :: [Int]))
         , bench "5" $ whnf foldableToIntMap (Set.fromList ([0..50] :: [Int]))
+        ]
+      ]
+    ]
+  , bgroup "`indexSpan`"
+    [ bgroup "[Bool]"
+      [ bgroup "Left Fold, Lazy"
+        [ bench "1" $ whnf indexSpanL (replicate 3 False ++ replicate 5 True ++ replicate 2 False)
+        , bench "2" $ whnf indexSpanL (replicate 6 False ++ replicate 10 True ++ replicate 4 False)
+        , bench "3" $ whnf indexSpanL (replicate 9 False ++ replicate 15 True ++ replicate 6 False)
+        , bench "4" $ whnf indexSpanL (replicate 12 False ++ replicate 20 True ++ replicate 8 False)
+        , bench "5" $ whnf indexSpanL (replicate 15 False ++ replicate 25 True ++ replicate 10 False)
+        ]
+      , bgroup "Left Fold, Strict"
+        [ bench "1" $ whnf indexSpanL' (replicate 3 False ++ replicate 5 True ++ replicate 2 False)
+        , bench "2" $ whnf indexSpanL' (replicate 6 False ++ replicate 10 True ++ replicate 4 False)
+        , bench "3" $ whnf indexSpanL' (replicate 9 False ++ replicate 15 True ++ replicate 6 False)
+        , bench "4" $ whnf indexSpanL' (replicate 12 False ++ replicate 20 True ++ replicate 8 False)
+        , bench "5" $ whnf indexSpanL' (replicate 15 False ++ replicate 25 True ++ replicate 10 False)
+        ]
+      , bgroup "Right Fold, Lazy"
+        [ bench "1" $ whnf indexSpanR (replicate 3 False ++ replicate 5 True ++ replicate 2 False)
+        , bench "2" $ whnf indexSpanR (replicate 6 False ++ replicate 10 True ++ replicate 4 False)
+        , bench "3" $ whnf indexSpanR (replicate 9 False ++ replicate 15 True ++ replicate 6 False)
+        , bench "4" $ whnf indexSpanR (replicate 12 False ++ replicate 20 True ++ replicate 8 False)
+        , bench "5" $ whnf indexSpanR (replicate 15 False ++ replicate 25 True ++ replicate 10 False)
+        ]
+      , bgroup "Right Fold, Strict"
+        [ bench "1" $ whnf indexSpanR' (replicate 3 False ++ replicate 5 True ++ replicate 2 False)
+        , bench "2" $ whnf indexSpanR' (replicate 6 False ++ replicate 10 True ++ replicate 4 False)
+        , bench "3" $ whnf indexSpanR' (replicate 9 False ++ replicate 15 True ++ replicate 6 False)
+        , bench "4" $ whnf indexSpanR' (replicate 12 False ++ replicate 20 True ++ replicate 8 False)
+        , bench "5" $ whnf indexSpanR' (replicate 15 False ++ replicate 25 True ++ replicate 10 False)
+        ]
+      , bgroup "Left Monad Fold, ST"
+        [ bench "1" $ whnf indexSpanST (replicate 3 False ++ replicate 5 True ++ replicate 2 False)
+        , bench "2" $ whnf indexSpanST (replicate 6 False ++ replicate 10 True ++ replicate 4 False)
+        , bench "3" $ whnf indexSpanST (replicate 9 False ++ replicate 15 True ++ replicate 6 False)
+        , bench "4" $ whnf indexSpanST (replicate 12 False ++ replicate 20 True ++ replicate 8 False)
+        , bench "5" $ whnf indexSpanST (replicate 15 False ++ replicate 25 True ++ replicate 10 False)
+        ]
+      , bgroup "Left Monad Fold, ST'"
+        [ bench "1" $ whnf indexSpanST' (replicate 3 False ++ replicate 5 True ++ replicate 2 False)
+        , bench "2" $ whnf indexSpanST' (replicate 6 False ++ replicate 10 True ++ replicate 4 False)
+        , bench "3" $ whnf indexSpanST' (replicate 9 False ++ replicate 15 True ++ replicate 6 False)
+        , bench "4" $ whnf indexSpanST' (replicate 12 False ++ replicate 20 True ++ replicate 8 False)
+        , bench "5" $ whnf indexSpanST' (replicate 15 False ++ replicate 25 True ++ replicate 10 False)
         ]
       ]
     ]
