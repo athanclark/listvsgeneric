@@ -48,6 +48,13 @@ main = defaultMain
         , bench "4" $ whnf foldableToIntMap' ([0..40] :: [Int])
         , bench "5" $ whnf foldableToIntMap' ([0..50] :: [Int])
         ]
+      , bgroup "[Int] STM"
+        [ bench "1" $ whnfIO (foldableToIntMapSTM ([0..10] :: [Int]))
+        , bench "2" $ whnfIO (foldableToIntMapSTM ([0..20] :: [Int]))
+        , bench "3" $ whnfIO (foldableToIntMapSTM ([0..30] :: [Int]))
+        , bench "4" $ whnfIO (foldableToIntMapSTM ([0..40] :: [Int]))
+        , bench "5" $ whnfIO (foldableToIntMapSTM ([0..50] :: [Int]))
+        ]
       , bgroup "Set Int"
         [ bench "1" $ whnf foldableToIntMap (Set.fromList ([0..10] :: [Int]))
         , bench "2" $ whnf foldableToIntMap (Set.fromList ([0..20] :: [Int]))
